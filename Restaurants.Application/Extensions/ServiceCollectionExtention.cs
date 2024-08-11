@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 namespace Restaurants.Application.Extensions
 {
@@ -16,8 +18,13 @@ namespace Restaurants.Application.Extensions
 
         public static void AddApplication(this IServiceCollection services)
         {
+
+            var applicationAssembly = Assembly.GetExecutingAssembly();
+
             services.AddScoped<IRestaurantsService, RestaurantsService>();
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddAutoMapper(applicationAssembly);
+            services.AddValidatorsFromAssembly(applicationAssembly)  // it will register all classes that direved from AbstractValidator<> in current assembly 
+                   .AddFluentValidationAutoValidation();   // it will replace the endpoint validation 
         }
 
 
