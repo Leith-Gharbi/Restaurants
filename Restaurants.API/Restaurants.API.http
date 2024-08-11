@@ -1,18 +1,46 @@
+
+
 @RestaurantsAPI_HostAddress = http://localhost:5209
-@count =1
-@minTemp =20
-@maxTemp = 40
+
+
 
 GET {{RestaurantsAPI_HostAddress}}/weatherforecast?count={{count}}&minTemp={{minTemp}}&maxTemp={{maxTemp}}
 Accept: application/json
 
 ###
 
-POST {{RestaurantsAPI_HostAddress}}/weatherforecast/generate?nbr={{count}}
+GET {{RestaurantsAPI_HostAddress}}/api/restaurants
+
+###
+
+GET {{RestaurantsAPI_HostAddress}}/api/restaurants/1
+
+###
+
+GET {{RestaurantsAPI_HostAddress}}/api/restaurants/{id}
+
+###
+
+GET {{RestaurantsAPI_HostAddress}}/api/restaurants/{id}
+
+###
+
+
+@RestaurantsAPI_HostAddress = http://localhost:5209
+POST {{RestaurantsAPI_HostAddress}}/api/restaurants
 Content-Type: application/json
 
-{
-    "minTem" :20 ,
-    "maxTemp" : 30
+{ 
+"Name": "Spicy Delights",
+"Description": "A culinary experience like no oth",
+"Category": "Fine Dining",
+"HasDelivery": true,
+"ContactEmail":
+"info@gourmetdelights.com",
+"ContactNumber": "555-123-4567",
+"City": "Metropolis",
+"Street": "456 Gourmet Avenue",
+"PostalCode": "54321"
 }
 
+###
