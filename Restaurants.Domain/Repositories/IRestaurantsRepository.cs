@@ -11,5 +11,7 @@ namespace Restaurants.Domain.Repositories
         Task<Restaurant?> GetByIdAync(int id);
 
         Task<int> Create(Restaurant restaurant);
+
+        Task Delete(Restaurant restaurant);
     }
 }

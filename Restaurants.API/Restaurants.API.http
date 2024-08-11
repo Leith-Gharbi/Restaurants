@@ -1,3 +1,4 @@
+@Restaurants.API_HostAddress = http://localhost:5209
 
 
 @RestaurantsAPI_HostAddress = http://localhost:5209
@@ -31,7 +32,7 @@ POST {{RestaurantsAPI_HostAddress}}/api/restaurants
 Content-Type: application/json
 
 { 
-"Name": "Spicy Delights",
+"Name": "Pizza aouina",
 "Description": "A culinary experience like no oth",
 "Category": "Fine Dining",
 "HasDelivery": true,
@@ -42,5 +43,10 @@ Content-Type: application/json
 "Street": "456 Gourmet Avenue",
 "PostalCode": "54-321"
 }
+
+###
+
+@RestaurantsAPI_HostAddress = http://localhost:5209
+DELETE {{RestaurantsAPI_HostAddress}}/api/restaurants/3
 
 ###
