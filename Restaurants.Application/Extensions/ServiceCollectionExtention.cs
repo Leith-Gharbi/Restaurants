@@ -21,7 +21,7 @@ namespace Restaurants.Application.Extensions
 
             var applicationAssembly = Assembly.GetExecutingAssembly();
 
-            services.AddScoped<IRestaurantsService, RestaurantsService>();
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(applicationAssembly)); // Register Mediator 
             services.AddAutoMapper(applicationAssembly);
             services.AddValidatorsFromAssembly(applicationAssembly)  // it will register all classes that direved from AbstractValidator<> in current assembly 
                    .AddFluentValidationAutoValidation();   // it will replace the endpoint validation 
