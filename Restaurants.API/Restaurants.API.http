@@ -28,13 +28,13 @@ GET {{RestaurantsAPI_HostAddress}}/api/restaurants/{id}
 
 
 @RestaurantsAPI_HostAddress = http://localhost:5209
-POST {{RestaurantsAPI_HostAddress}}/api/restaurants
+POST http://localhost:5209/api/restaurants
 Content-Type: application/json
 
 { 
-"Name": "Pizza aouina",
+"Name": "Pizza 3izzedine",
 "Description": "A culinary experience like no oth",
-"Category": "Fine Dining",
+"Category": "Indain",
 "HasDelivery": true,
 "ContactEmail":
 "info@gourmetdelights.com",
@@ -48,5 +48,16 @@ Content-Type: application/json
 
 @RestaurantsAPI_HostAddress = http://localhost:5209
 DELETE {{RestaurantsAPI_HostAddress}}/api/restaurants/3
+
+###
+
+@RestaurantsAPI_HostAddress = http://localhost:5209
+PATCH http://localhost:5209/api/restaurants/2
+Content-Type: application/json
+
+{
+  "Name":"Mac Donanld",
+   "description": "McDonald's restaurants mainly serve hamburgers, cheeseburgers, chicken nuggets, burgers, french fries, breakfast items, soft drinks, milk shakes and desserts. They also have options such as salads, apples, milk, McDonald's Popular Picks"
+}
 
 ###

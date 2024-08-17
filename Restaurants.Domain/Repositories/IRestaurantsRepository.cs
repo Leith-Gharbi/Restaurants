@@ -1,5 +1,4 @@
 ﻿
-
 using Restaurants.Domain.Entities;
 
 namespace Restaurants.Domain.Repositories
@@ -10,8 +9,12 @@ namespace Restaurants.Domain.Repositories
 
         Task<Restaurant?> GetByIdAync(int id);
 
+        Task Update(Restaurant restaurant);
+
         Task<int> Create(Restaurant restaurant);
 
         Task Delete(Restaurant restaurant);
+
+        Task SaveChanges();
     }
 }

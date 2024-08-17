@@ -34,6 +34,17 @@ namespace Restaurants.Infrastructure.Repositories
 
         }
 
+        public async Task SaveChanges()
+        
+         =>   await dbContext.SaveChangesAsync();
+        
 
+        public async Task Update(Restaurant restaurant)
+        {
+
+            dbContext.Restaurants.Update(restaurant);
+            await dbContext.SaveChangesAsync();
+
+        }
     }
 }
