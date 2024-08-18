@@ -15,10 +15,16 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
 // Add Serilog 
-builder.Host.UseSerilog((context, configuration) => configuration
-.MinimumLevel.Override("Microsoft",LogEventLevel.Warning)
-.MinimumLevel.Override("Microsoft.EntityFrameworkCore",LogEventLevel.Information)
-.WriteTo.Console(outputTemplate : "[{Timestamp:dd-MM HH:mm:ss} {Level:u3}] |{SourceContext}| {NewLine}{Message:lj}{NewLine}{Exception}"));
+builder.Host.UseSerilog((context, configuration) => 
+ configuration
+ .ReadFrom.Configuration(context.Configuration)  // this to indicate that serilog parameters are from appseting.json 
+
+ // this when you config serilog in program.cs
+        //.MinimumLevel.Override("Microsoft",LogEventLevel.Warning)
+        //.MinimumLevel.Override("Microsoft.EntityFrameworkCore",LogEventLevel.Information)
+        //.WriteTo.File("Logs/Restaurant-API-.log",rollingInterval:RollingInterval.Day,rollOnFileSizeLimit: true) // create a  Log folder and generate a log file every day 
+        //.WriteTo.Console(outputTemplate : "[{Timestamp:dd-MM HH:mm:ss} {Level:u3}] |{SourceContext}| {NewLine}{Message:lj}{NewLine}{Exception}")
+ );
 
 var app = builder.Build();
 
