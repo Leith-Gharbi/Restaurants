@@ -1,5 +1,6 @@
 
 using Microsoft.OpenApi.Models;
+using Restaurants.API.Middlewares;
 using Restaurants.Application.Extensions;
 using Restaurants.Infrastructure.Extensions;
 using Restaurants.Infrastructure.Seeders;
@@ -24,6 +25,11 @@ builder.Services.AddSwaggerGen(c =>
         Description = "My API Description",
     });
 });
+
+
+//Register the  Error Handling middleware  as dependency 
+builder.Services.AddScoped<ErrorHandlingMiddleware>();
+
 builder.Services.AddApplication();
 
 // Add Serilog 
@@ -46,6 +52,8 @@ await seeder.Seed();
 
 // Configure the HTTP request pipeline.
 
+
+app.UseMiddleware<ErrorHandlingMiddleware>(); // add ErrorHandlingMiddle  (1st middleware in the http request pipeline)
 
 app.UseSerilogRequestLogging(); // middleware serilog
 
