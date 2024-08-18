@@ -16,7 +16,7 @@ namespace Restaurants.API.Controllers
     {
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK,Type = typeof(IEnumerable<RestaurantDto>))]   // This for specifing the return type in Swagger Doc
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<RestaurantDto>))]   // This for specifing the return type in Swagger Doc
         public async Task<IActionResult> GetAll()
         {
             var restaurants = await mediator.Send(new GetAllRestaurantsQuery());
@@ -26,25 +26,18 @@ namespace Restaurants.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<RestaurantDto?>> GetById([FromRoute] int id)  // ActionResult<RestaurantDto?>  will specify the resonse type in swagger doc
         {
-            var restaurant = await mediator.Send(new GetRestaurantByIdQuery(id) );
-            if (restaurant is null)
-            {
-                return NotFound();
-            }
+            var restaurant = await mediator.Send(new GetRestaurantByIdQuery(id));
+
             return Ok(restaurant);
         }
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteRestaurnt ([FromRoute] int id)
+        public async Task<IActionResult> DeleteRestaurnt([FromRoute] int id)
         {
- 
-            var isDeleted = await mediator.Send(new DeleteRestaurantCommand(id));
 
-            if (isDeleted)
-                return NoContent();
-
+            await mediator.Send(new DeleteRestaurantCommand(id));
             return NotFound();
         }
         [HttpPost]
@@ -60,17 +53,15 @@ namespace Restaurants.API.Controllers
         }
 
         [HttpPatch("{id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)] 
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateRestaurant([FromRoute] int id, UpdateRestaurantCommand command)
         {
             command.Id = id;
-            var isUpdated = await mediator.Send(command);
+            await mediator.Send(command);
 
-            if (isUpdated)
-                return NoContent();
+            return NoContent();
 
-            return NotFound();
         }
 
 
