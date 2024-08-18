@@ -29,6 +29,8 @@ builder.Services.AddSwaggerGen(c =>
 
 //Register the  Error Handling middleware  as dependency 
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
+//Register the  Request TimeLogging middleware  as dependency 
+builder.Services.AddScoped<RequestTimeLoggingMiddleware>();
 
 builder.Services.AddApplication();
 
@@ -54,7 +56,7 @@ await seeder.Seed();
 
 
 app.UseMiddleware<ErrorHandlingMiddleware>(); // add ErrorHandlingMiddle  (1st middleware in the http request pipeline)
-
+app.UseMiddleware<RequestTimeLoggingMiddleware>();// add RequestTimeLoggingMiddleware  
 app.UseSerilogRequestLogging(); // middleware serilog
 
 
