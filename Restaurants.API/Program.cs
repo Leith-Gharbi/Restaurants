@@ -1,4 +1,5 @@
 
+using Microsoft.OpenApi.Models;
 using Restaurants.Application.Extensions;
 using Restaurants.Infrastructure.Extensions;
 using Restaurants.Infrastructure.Seeders;
@@ -12,6 +13,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddInfrastructure(builder.Configuration);
+
+// Add Swagger Service
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "My API",
+        Description = "My API Description",
+    });
+});
 builder.Services.AddApplication();
 
 // Add Serilog 
@@ -36,6 +48,19 @@ await seeder.Seed();
 
 
 app.UseSerilogRequestLogging(); // middleware serilog
+
+
+
+
+if (app.Environment.IsDevelopment())
+{
+
+    // Enable middleware to serve generated Swagger as a JSON endpoint.
+    app.UseSwagger();
+    app.UseSwaggerUI(); // Add middleware Swagger 
+
+}
+
 
 app.UseHttpsRedirection();
 

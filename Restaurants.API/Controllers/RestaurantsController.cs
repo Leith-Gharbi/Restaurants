@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 using Restaurants.Application.Restaurants.Commands.DeleteRestaurant;
 using Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
+using Restaurants.Application.Restaurants.Dtos;
 using Restaurants.Application.Restaurants.Queries.GetAllRestaurants;
 using Restaurants.Application.Restaurants.Queries.GetById;
 
@@ -15,6 +16,7 @@ namespace Restaurants.API.Controllers
     {
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK,Type = typeof(IEnumerable<RestaurantDto>))]   // This for specifing the return type in Swagger Doc
         public async Task<IActionResult> GetAll()
         {
             var restaurants = await mediator.Send(new GetAllRestaurantsQuery());
@@ -22,7 +24,7 @@ namespace Restaurants.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById([FromRoute] int id)
+        public async Task<ActionResult<RestaurantDto?>> GetById([FromRoute] int id)  // ActionResult<RestaurantDto?>  will specify the resonse type in swagger doc
         {
             var restaurant = await mediator.Send(new GetRestaurantByIdQuery(id) );
             if (restaurant is null)
@@ -33,6 +35,8 @@ namespace Restaurants.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteRestaurnt ([FromRoute] int id)
         {
  
@@ -56,6 +60,8 @@ namespace Restaurants.API.Controllers
         }
 
         [HttpPatch("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)] 
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateRestaurant([FromRoute] int id, UpdateRestaurantCommand command)
         {
             command.Id = id;
