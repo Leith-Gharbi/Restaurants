@@ -65,3 +65,16 @@ Content-Type: application/json
 GET {{RestaurantsAPI_HostAddress}}/api/restaurant/2/dishes
 
 ###
+@RestaurantsAPI_HostAddress = http://localhost:5209
+POST {{RestaurantsAPI_HostAddress}}/api/restaurant/2/dishes
+Content-Type: application/json
+
+{
+  "name": "lablabi",
+  "description": "lablabi",
+  "price": 15,
+  "kiloCalories": 2000,
+  "restaurantId": 2
+}
+
+###
