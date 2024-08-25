@@ -8,5 +8,6 @@ namespace Restaurants.Domain.Repositories
     {
 
         Task<int> Create(Dish entity);
+        Task Delete(IEnumerable<Dish> dishes);
     }
 }
