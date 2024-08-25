@@ -61,3 +61,7 @@ Content-Type: application/json
 }
 
 ###
+@RestaurantsAPI_HostAddress = http://localhost:5209
+GET {{RestaurantsAPI_HostAddress}}/api/restaurant/2/dishes
+
+###
