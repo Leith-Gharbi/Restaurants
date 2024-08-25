@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Restaurants.Application.Dishes.Commands.CreateDish
 {
-    public class CreateDisheCommand : IRequest
+    public class CreateDisheCommand : IRequest<int>
     {
         public string Name { get; set; } = default!;
         public string Description { get; set; } = default!;

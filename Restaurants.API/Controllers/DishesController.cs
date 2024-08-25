@@ -20,8 +20,9 @@ namespace Restaurants.API.Controllers
         {
 
             command.RestaurantId = restaurantId;
-            await mediator.Send(command);
-            return Created();
+            var dishId = await mediator.Send(command);
+            return CreatedAtAction(nameof(GetByIdForRestaurant), new { restaurantId, dishId }, null);
+
 
         }
 
