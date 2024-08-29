@@ -19,11 +19,39 @@ builder.Services.AddInfrastructure(builder.Configuration);
 // Add Swagger Service
 builder.Services.AddSwaggerGen(c =>
 {
+
+
+
+
     c.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
         Title = "My API",
         Description = "My API Description",
+    });
+
+
+
+    c.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
+    {
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
+    });
+
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type =ReferenceType.SecurityScheme,
+                    Id= "bearerAuth"
+                }
+            },[]
+        }
+
     });
 });
 
@@ -75,7 +103,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapIdentityApi<User>();
+app.MapGroup("api/identity").MapIdentityApi<User>();
 
 app.UseAuthorization();
 
