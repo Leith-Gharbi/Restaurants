@@ -78,3 +78,21 @@ Content-Type: application/json
 }
 
 ###
+
+POST {{RestaurantsAPI_HostAddress}}/register
+Content-Type: application/json
+
+{
+    "email": "leithgharbi@yahoo.fr",
+    "password" :"Azertyuiop1$"
+}
+
+###
+
+POST {{RestaurantsAPI_HostAddress}}/login
+Content-Type: application/json
+
+{
+    "email": "leithgharbi@yahoo.fr",
+    "password" :"Azertyuiop1$"
+}

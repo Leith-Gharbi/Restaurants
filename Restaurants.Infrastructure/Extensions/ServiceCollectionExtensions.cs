@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Restaurants.Domain.Entities;
 using Restaurants.Domain.Repositories;
 using Restaurants.Infrastructure.Persistance;
 using Restaurants.Infrastructure.Repositories;
@@ -18,6 +19,8 @@ namespace Restaurants.Infrastructure.Extensions
             services.AddScoped<IRestaurantsSeeder, RestaurantsSeeder>();
             services.AddScoped<IRestaurantsRepository, RestaurantsRepository>(); 
             services.AddScoped<IDishesRepository, DishesRepository>();
+
+            services.AddIdentityApiEndpoints<User>().AddEntityFrameworkStores<RestaurantsDbContext>(); 
         }
 
       
