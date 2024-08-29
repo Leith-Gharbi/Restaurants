@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 using Restaurants.Application.Restaurants.Commands.DeleteRestaurant;
@@ -12,10 +13,12 @@ namespace Restaurants.API.Controllers
 {
     [ApiController]
     [Route("api/restaurants")]
+    [Authorize]
     public class RestaurantsController(IMediator mediator) : ControllerBase
     {
 
         [HttpGet]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<RestaurantDto>))]   // This for specifing the return type in Swagger Doc
         public async Task<IActionResult> GetAll()
         {
@@ -26,6 +29,8 @@ namespace Restaurants.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<RestaurantDto?>> GetById([FromRoute] int id)  // ActionResult<RestaurantDto?>  will specify the resonse type in swagger doc
         {
+
+            var userId = User.Claims.FirstOrDefault(c => c.Type =="<id claim type>")!.Value;
             var restaurant = await mediator.Send(new GetRestaurantByIdQuery(id));
 
             return Ok(restaurant);

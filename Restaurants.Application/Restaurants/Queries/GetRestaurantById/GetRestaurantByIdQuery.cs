@@ -8,12 +8,9 @@ using System.Threading.Tasks;
 
 namespace Restaurants.Application.Restaurants.Queries.GetById
 {
-    public class GetRestaurantByIdQuery :IRequest<RestaurantDto>
+    public class GetRestaurantByIdQuery(int id) :IRequest<RestaurantDto>
     {
-        public GetRestaurantByIdQuery(int id)
-        {
-            Id= id;
-        }
-        public int Id { get; }
+        public int Id { get; } = id;
+ 
     }
 }
