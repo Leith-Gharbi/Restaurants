@@ -9,6 +9,7 @@ namespace Restaurants.API.Extensions
         public static void AddPresentation(this WebApplicationBuilder builder )
         {
 
+            builder.Services.AddAuthentication(); // to accept token passed on header
             builder.Services.AddControllers();
             // Add Swagger Service
             builder.Services.AddSwaggerGen(c =>
