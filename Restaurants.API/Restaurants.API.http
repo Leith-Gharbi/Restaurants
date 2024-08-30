@@ -3,8 +3,7 @@
 
 @RestaurantsAPI_HostAddress = http://localhost:5209
 
-@token =CfDJ8BnLFYmBvoxJvOw16aNbyBdac3PdIlSQV8lRT4l2L8Zb45-xwr_dKXEIA6ri5pQHUwztdXfK0XMzrlMZxp6HAun2Pz-YkYAskyJZXC0EdSs906SCHvevmGnfvILjyKASh8m01q0RWh1P5oPvCxo26MRUMeIBSzGoRVW-m3JTzO4CTFgAfdstTmNreiJSXoHMvJf53T4hmjEHj8NB388z-H8mUwtQ85OSDd9rvD07dej0OSNE4pPvbjoxLoZsYg403l-HZxFSUa_46yoJ3gMkVEtiCuNFbqVAQ6e2GSwYHiwyS3jqZUjaoefVxrbi4WyHuCImY6I_jpLruxNrulK_Us1DSCPvY-hcY3h1WVmAzUEADk2lS10n8eGehCtGJNdcFY2KuOtFDs7RCn2XcgqXvTL8fRNj-4AyWMfM3N0Ry9nykNc43Qp5GjWtQVXfPyc8ZILV3P0H-wmBaHgIkaOo6R1b-j4dbzmbYF_t1uDMwhYDw7M7_gnVT7Dg0fildHj3tRWTCHqwkqvlcEv0jVHQnHptYRMUsVs2y-2N0Ycp39jxsuv4-9TrezjVba5Bb_JwQMteBXVBPG6B_FII-Zi7QH3eYjxZt1UeG6pGCeiCOdmhRdOgn3pXnv0YElVqRU7rMW3CQGEF7f7TD03eF4ZGLjtHpfwn3zA7TkBsEhU2txvttC-SMqZF-i7sfzREr2-NtaRLad8A9nn30l8qM6b--n4
-
+@token = CfDJ8BnLFYmBvoxJvOw16aNbyBeLcX2akEFlTqUyoC7OOop8do8ftShyubGGYZ9z-cjau9qx1hMB4jMsYCEYZ3UvT5lQljes1j8xV_62XJpnO6DB4pN9y50v5LEH6BAHzFZ7dm4fryOwFLcDO-zkR_fsrcH13lM38vQvJ6GLaECTCwurG2CLFEB3yQ2W-0w8r2csHqxgfGHgjr6PBWUJteF6GPs-qDEeTLYw1BuA5z3hum-QgFJXXLuKjp1z8-6oCk1Rm3fUdd3NTYoSLtQDUnvpMS8bgHz04sbpAk4bQkdtxxvzqH4z0fwwGZZK75i_vz0M2fXroHsoQz4lkMxAAjACdQ3g9BVsaVHQ_iidBnOSRiMLgj60igm7nIC6V7ELbMiO3LlEjlBBa_zHYAoG66-YQdGiNC0JGJ45ucI0ZQSE7Z-tnemAEzJ3GETmazvbyZEh1IjgLGMX96KcvbZTYiQDmkQ53APXfhza3W1npSfCucgRTfFf6gz69Ydqq9mRwVaIc-_cYuquWRR8Qk72u8uE5gncxML_vuoUTSBrybsrm3xk7Z5PafaWjKIM1-HhCqV-A2ua49xAxt6wNLsHtbnxbnvjcuszXSJFcL63isnsNpSVYy43a0yMg-2ed1gKnVrJfcWMq4zuz2w0y_qGuZ1NabZXrAosiHOLoMjUQrKl64oIFz5pnB0YZPSdX845rEXp4oNXpyXHBB1qDAPrRq7FdsnTLExnO8j9oNYOXLXsTRGbk5AddB-f2f7y569_y9t6k2WpGXxUUyeetGrClTkMCod-IbxBrCYibxXXaxbqpsK5
 GET {{RestaurantsAPI_HostAddress}}/weatherforecast?count={{count}}&minTemp={{minTemp}}&maxTemp={{maxTemp}}
 Accept: application/json
 
@@ -31,10 +30,11 @@ GET {{RestaurantsAPI_HostAddress}}/api/restaurants/{id}
 
 @RestaurantsAPI_HostAddress = http://localhost:5209
 POST http://localhost:5209/api/restaurants
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 { 
-"Name": "Pizza 3izzedine",
+"Name": "mlewi janoub ",
 "Description": "A culinary experience like no oth",
 "Category": "Indain",
 "HasDelivery": true,
@@ -95,6 +95,6 @@ POST {{RestaurantsAPI_HostAddress}}/api/identity/login
 Content-Type: application/json
 
 {
-    "email": "leithgharbi@yahoo.fr",
-    "password" :"Azertyuiop1$"
+    "email": "owner@test.com",
+    "password" :"Azertyuiop$1"
 }
