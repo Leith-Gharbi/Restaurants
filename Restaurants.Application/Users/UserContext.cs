@@ -2,7 +2,7 @@
 using System.Security.Claims;
 
 
-namespace Restaurants.Application.User
+namespace Restaurants.Application.Users
 {
     public class UserContext(IHttpContextAccessor httpContextAccessor) : IUserContext
     {

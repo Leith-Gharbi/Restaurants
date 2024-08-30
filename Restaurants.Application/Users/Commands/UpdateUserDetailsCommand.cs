@@ -1,9 +1,9 @@
 ﻿
-using Microsoft.AspNetCore.Identity;
+using MediatR;
 
-namespace Restaurants.Domain.Entities
+namespace Restaurants.Application.Users.Commands
 {
-    public class User :IdentityUser
+    public class UpdateUserDetailsCommand () : IRequest
     {
 
         public DateOnly? DateOfBirth { get; set; }

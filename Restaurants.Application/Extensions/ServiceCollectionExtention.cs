@@ -2,7 +2,7 @@
 using System.Reflection;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using Restaurants.Application.User;
+using Restaurants.Application.Users;
 
 namespace Restaurants.Application.Extensions
 {
