@@ -25,7 +25,11 @@ namespace Restaurants.Infrastructure.Extensions
             services.AddIdentityApiEndpoints<User>()
                 .AddRoles<IdentityRole>()
                 .AddClaimsPrincipalFactory<RestaurantsUserClaimsPrincipalFactory>() // to use custom claim principal 
-                .AddEntityFrameworkStores<RestaurantsDbContext>(); 
+                .AddEntityFrameworkStores<RestaurantsDbContext>();
+
+
+
+            services.AddAuthorizationBuilder().AddPolicy(PolicyNames.HasNationality, builder => builder.RequireClaim(AppClaimTypes.Nationality, "Tunisian" ,"German"));  // allow authorize attribute with policy value 
         }
 
       
