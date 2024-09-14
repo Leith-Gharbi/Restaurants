@@ -3,15 +3,15 @@
 
 @RestaurantsAPI_HostAddress = http://localhost:5209
 
-@token = CfDJ8BnLFYmBvoxJvOw16aNbyBeLcX2akEFlTqUyoC7OOop8do8ftShyubGGYZ9z-cjau9qx1hMB4jMsYCEYZ3UvT5lQljes1j8xV_62XJpnO6DB4pN9y50v5LEH6BAHzFZ7dm4fryOwFLcDO-zkR_fsrcH13lM38vQvJ6GLaECTCwurG2CLFEB3yQ2W-0w8r2csHqxgfGHgjr6PBWUJteF6GPs-qDEeTLYw1BuA5z3hum-QgFJXXLuKjp1z8-6oCk1Rm3fUdd3NTYoSLtQDUnvpMS8bgHz04sbpAk4bQkdtxxvzqH4z0fwwGZZK75i_vz0M2fXroHsoQz4lkMxAAjACdQ3g9BVsaVHQ_iidBnOSRiMLgj60igm7nIC6V7ELbMiO3LlEjlBBa_zHYAoG66-YQdGiNC0JGJ45ucI0ZQSE7Z-tnemAEzJ3GETmazvbyZEh1IjgLGMX96KcvbZTYiQDmkQ53APXfhza3W1npSfCucgRTfFf6gz69Ydqq9mRwVaIc-_cYuquWRR8Qk72u8uE5gncxML_vuoUTSBrybsrm3xk7Z5PafaWjKIM1-HhCqV-A2ua49xAxt6wNLsHtbnxbnvjcuszXSJFcL63isnsNpSVYy43a0yMg-2ed1gKnVrJfcWMq4zuz2w0y_qGuZ1NabZXrAosiHOLoMjUQrKl64oIFz5pnB0YZPSdX845rEXp4oNXpyXHBB1qDAPrRq7FdsnTLExnO8j9oNYOXLXsTRGbk5AddB-f2f7y569_y9t6k2WpGXxUUyeetGrClTkMCod-IbxBrCYibxXXaxbqpsK5
+@token = CfDJ8BnLFYmBvoxJvOw16aNbyBcZ7IGvzXzKL_2GG5sWbtTmW39L48WVl9aSBRSsEF2c_EdpL43CbOkJf0gyW_QaSuGi7dZeOz4105UsZ3vPkyjKY22EcAphGMVDrEqOG0gCeH9wvRsjzkHYYi89C2XgRhk528LLVG3BaAlIht3O_qvZodQqOcUtdBdltArVM-p4wYZh9UGaTOhjAeaXywnR-T-r4ESkdD01PSVjIqt9KNIakMQGeY6Q56Qu9RAUhfSRf2yauq3fNxk23n3HhD_TSRAGTWSfomCzaK1CjV1H4tu-Sj5zsiAy8K7UHmR2AHxivnBKFTP6VESokg3B8zCYZcr7pNMpXXoZbw-Hle6rixVlPI2a4vobtTe36iZGFjGhb2BORDvhsw31wAuAz-SbqRqvJbwPKUxI2r0PnQora5ycjQRf0JbtooAOcdFCGP5HIC49dicABNie7uvHvPezuf2Dpb9r9vMSlLQYOuD8jNI5yefBpDkF1h989yxByUF3kDeSF-UVH1n5iv7uBjk7jceR-LeG9nQti9F_FqsWBnWGaMTn0eyvt2P2YfyESSxskeafqNpNq7yjmP9of2LmDA6MJfNBgt_nhiI139AlPfoNGwKq9Rqt-SrvYuSXTqm8R21qQ2sejd3rcDcQekJcGowKp4ca2jREAe5zktuqF3ahGFOiRJ99PjT_i4Y5bNVsGLA_EaB9a1w0u1uwNYuDNiFNcKlfmABvv7YqmqSA76fN4NCOR4Dj2ZF4L7_F7X-8cK8VOoRoR3Rj_AapodBrh1bHRYMf_yvLfKhVa9xT-2lg
 GET {{RestaurantsAPI_HostAddress}}/weatherforecast?count={{count}}&minTemp={{minTemp}}&maxTemp={{maxTemp}}
 Accept: application/json
 
 ###
 
 GET {{RestaurantsAPI_HostAddress}}/api/restaurants
-
 Authorization: Bearer {{token}}
+
 
 ###
 
@@ -55,6 +55,7 @@ DELETE {{RestaurantsAPI_HostAddress}}/api/restaurants/3
 
 @RestaurantsAPI_HostAddress = http://localhost:5209
 PATCH http://localhost:5209/api/restaurants/2
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -97,4 +98,15 @@ Content-Type: application/json
 {
     "email": "owner@test.com",
     "password" :"Azertyuiop$1"
+}
+
+
+###
+
+POST {{RestaurantsAPI_HostAddress}}/api/identity/login
+Content-Type: application/json
+
+{
+   "email": "leithgharbi@yahoo.fr",
+    "password" :"Azertyuiop1$"
 }
