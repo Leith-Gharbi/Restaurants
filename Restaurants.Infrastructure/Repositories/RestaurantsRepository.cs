@@ -9,8 +9,8 @@ namespace Restaurants.Infrastructure.Repositories
     {
         public async Task<int> Create(Restaurant restaurant)
         {
-           dbContext.Restaurants.Add(restaurant);
-           await  dbContext.SaveChangesAsync();
+            dbContext.Restaurants.Add(restaurant);
+            await dbContext.SaveChangesAsync();
             return restaurant.Id;
 
         }
@@ -23,27 +23,41 @@ namespace Restaurants.Infrastructure.Repositories
 
         public async Task<IEnumerable<Restaurant>> GetAllAsync()
         {
-           var restaurants = await dbContext.Restaurants.ToListAsync();
+            var restaurants = await dbContext.Restaurants.ToListAsync();
+            return restaurants;
+        }
+
+
+        public async Task<IEnumerable<Restaurant>> GetAllMatchingAsync(string? searchPhrase)
+        {
+            var searchPhraseLower = searchPhrase?.ToLower();
+            var restaurants = await dbContext
+                .Restaurants
+                .Where(r => searchPhrase == null
+            || r.Description.ToLower().Contains(searchPhraseLower)
+             || r.Name.ToLower().Contains(searchPhraseLower)
+             ).ToListAsync();
+
             return restaurants;
         }
 
         public async Task<Restaurant?> GetByIdAync(int id)
         {
-            var restaurant = await dbContext.Restaurants.Include(r=> r.Dishes).FirstOrDefaultAsync(x=> x.Id==id);
+            var restaurant = await dbContext.Restaurants.Include(r => r.Dishes).FirstOrDefaultAsync(x => x.Id == id);
             return restaurant;
 
         }
 
         public async Task<IEnumerable<Restaurant>> GetByOwnerIdAsync(string ownerId)
         {
-            var restaurants =  await dbContext.Restaurants.Where(r => r.OwnerId == ownerId).ToListAsync();  
+            var restaurants = await dbContext.Restaurants.Where(r => r.OwnerId == ownerId).ToListAsync();
             return restaurants;
         }
 
         public async Task SaveChanges()
-        
-         =>   await dbContext.SaveChangesAsync();
-        
+
+         => await dbContext.SaveChangesAsync();
+
 
         public async Task Update(Restaurant restaurant)
         {
