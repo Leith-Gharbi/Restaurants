@@ -34,6 +34,12 @@ namespace Restaurants.Infrastructure.Repositories
 
         }
 
+        public async Task<IEnumerable<Restaurant>> GetByOwnerIdAsync(string ownerId)
+        {
+            var restaurants =  await dbContext.Restaurants.Where(r => r.OwnerId == ownerId).ToListAsync();  
+            return restaurants;
+        }
+
         public async Task SaveChanges()
         
          =>   await dbContext.SaveChangesAsync();

@@ -20,8 +20,9 @@ namespace Restaurants.API.Controllers
     {
 
         [HttpGet]
-        [AllowAnonymous]
+       // [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<RestaurantDto>))]   // This for specifing the return type in Swagger Doc
+        [Authorize(Policy = PolicyNames.CreatedAtleast2Restaurants)]
         public async Task<IActionResult> GetAll()
         {
             var restaurants = await mediator.Send(new GetAllRestaurantsQuery());

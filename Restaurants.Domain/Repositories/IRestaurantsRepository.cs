@@ -9,6 +9,7 @@ namespace Restaurants.Domain.Repositories
 
 
         Task<Restaurant?> GetByIdAync(int id);
+        Task<IEnumerable<Restaurant>> GetByOwnerIdAsync(string ownerId);
 
         Task Update(Restaurant restaurant);
 

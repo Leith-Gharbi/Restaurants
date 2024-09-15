@@ -32,13 +32,17 @@ namespace Restaurants.Infrastructure.Extensions
                 .AddEntityFrameworkStores<RestaurantsDbContext>();
 
 
-
+            /// custom policy 
             services.AddAuthorizationBuilder()
                 .AddPolicy(PolicyNames.HasNationality, builder => builder.RequireClaim(AppClaimTypes.Nationality, "Tunisian", "German")) // allow authorize attribute with policy value 
-                .AddPolicy(PolicyNames.AtLeast20, builder => builder.AddRequirements(new MinimumAgeRequirement(20)));
+                .AddPolicy(PolicyNames.AtLeast20, builder => builder.AddRequirements(new MinimumAgeRequirement(20)))
+                  .AddPolicy(PolicyNames.CreatedAtleast2Restaurants,
+                builder => builder.AddRequirements(new CreatedMultipleRestaurantsRequirement(2)));
 
-           
-            services.AddScoped<IAuthorizationHandler,MinimumAgeRequirementHandler>();
+
+
+            services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
+            services.AddScoped<IAuthorizationHandler, CreatedMultipleRestaurantsRequirementHandler>();
             services.AddScoped<IRestaurantAuthorizationService, RestaurantAuthorizationService>();
 
         }
