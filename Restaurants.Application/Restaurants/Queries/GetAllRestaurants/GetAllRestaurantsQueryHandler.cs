@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+
 using Microsoft.Extensions.Logging;
 using Restaurants.Application.Common;
 using Restaurants.Application.Restaurants.Dtos;
@@ -18,8 +18,8 @@ namespace Restaurants.Application.Restaurants.Queries.GetAllRestaurants
                 request.SearchPhrase,
                 request.PageSize,
                 request.PageNumber,
-                request.SortDirection,
-                request.SortBy
+                request.SortBy,
+                request.SortDirection
                 );
             var restaurantsDto = mapper.Map<IEnumerable<RestaurantDto>>(restaurants);
 
