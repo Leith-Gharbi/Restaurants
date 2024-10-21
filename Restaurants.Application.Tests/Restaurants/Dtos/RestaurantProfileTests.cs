@@ -24,8 +24,6 @@ public class RestaurantProfileTests
     public void CreateMap_ForRestaurantToRestaurantDto_MapCorrectly()
     {
         // Arrange
-   
-
         var restaurant = new Restaurant()
         {
             Id = 1,
@@ -46,18 +44,13 @@ public class RestaurantProfileTests
         // Act
         var restaurantDto = _mapper.Map<RestaurantDto>(restaurant);
 
-
-
         // Assert
-
         restaurantDto.Should().NotBeNull();
         restaurantDto.Id.Should().Be(restaurant.Id);
         restaurantDto.Name.Should().Be(restaurant.Name);
-
         restaurantDto.Description.Should().Be(restaurant.Description);
         restaurantDto.Category.Should().Be(restaurant.Category);
         restaurantDto.HasDelivery.Should().Be(restaurant.HasDelivery);
-
         restaurantDto.City.Should().Be(restaurant.Address.City);
         restaurantDto.Street.Should().Be(restaurant.Address.Street);
         restaurantDto.PostalCode.Should().Be(restaurant.Address.PostalCode);
@@ -71,8 +64,6 @@ public class RestaurantProfileTests
     public void CreateMap_ForCreateRestaurantCommandToRestaurant_MapCorrectly()
     {
         // Arrange
-
-
         var command = new CreateRestaurantCommand()
         {
             Name = "Test Restaurant",
@@ -91,9 +82,7 @@ public class RestaurantProfileTests
         var restaurant = _mapper.Map<Restaurant>(command);
 
 
-
         // Assert
-
         restaurant.Should().NotBeNull();
         restaurant.Name.Should().Be(command.Name);
         restaurant.Description.Should().Be(command.Description);
@@ -127,10 +116,7 @@ public class RestaurantProfileTests
         // Act
         var restaurant = _mapper.Map<Restaurant>(command);
 
-
-
         // Assert
-
         restaurant.Should().NotBeNull();
         restaurant.Name.Should().Be(command.Name);
         restaurant.Description.Should().Be(command.Description);
