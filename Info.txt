@@ -1,0 +1,140 @@
+Voici une version mise à jour du README qui reflète ces changements :
+
+
+---
+
+Daily PowerShell Script for Exchange Online User Management
+
+Overview
+
+This script is scheduled to run daily at 6 AM via a scheduled task named [Insert Task Name]. It is designed to manage Exchange Online groups by retrieving rules from the Maple application and performing updates based on the regulated users for each rule.
+
+Purpose
+
+The script performs the following actions:
+
+1. Retrieves rules from Maple, where each rule corresponds to an Exchange Online group name.
+
+
+2. Fetches the list of regulated users for each rule (group) from Maple.
+
+
+3. Compares the existing users in the Exchange Online group with the list returned by Maple.
+
+
+4. Identifies:
+
+Users to be removed (those present in the Exchange Online group but not in the Maple list).
+
+New users to be added (those in the Maple list but not in the Exchange Online group).
+
+
+
+5. Logs all actions using methods defined in an external script.
+
+
+6. Sends an email with a detailed report of all operations performed, via methods defined in the external script.
+
+
+
+Task Schedule
+
+The script is scheduled to run daily at 6 AM using the Windows Task Scheduler. The task is named [Insert Task Name].
+
+Key Components
+
+External Script: This script makes calls to an external script that contains:
+
+Methods for sending emails.
+
+Methods for logging actions in both a log file and the PIRUS application.
+
+
+Messaging API: Used to retrieve email addresses if not found.
+
+Restheart API: Used to fetch email addresses when the Adage collection contains null values for the email property.
+
+
+Detailed Steps
+
+1. Rule Fetching: The script calls the Maple API to fetch the rules, which are used to identify the Exchange Online group names.
+
+
+2. User Comparison: For each rule, the script:
+
+Retrieves the existing members of the corresponding Exchange Online group.
+
+Compares this list with the list of regulated users returned by Maple.
+
+
+
+3. Delta Calculation: The script identifies:
+
+Users to be removed from the Exchange Online group (present in Exchange Online but not in the Maple list).
+
+Users to be added to the Exchange Online group (present in Maple but not in Exchange Online).
+
+
+
+4. Logging: All actions are logged using methods from the external script, with logs stored both in a file and in the PIRUS application.
+
+
+5. Email Report: At the end of the script execution, an email is sent using methods from the external script, providing a summary of the actions performed, including:
+
+Groups processed.
+
+Users added and removed.
+
+Any errors or issues.
+
+
+
+
+Configuration
+
+Maple API: The script connects to the Maple API to fetch rules and user data.
+
+Exchange Online: The script uses Exchange Online PowerShell cmdlets to manage group memberships.
+
+Logging: Logging is handled by an external script, which logs to both a file and the PIRUS application.
+
+Email: Emails are sent using methods from the external script.
+
+
+Requirements
+
+PowerShell 5.1 or higher.
+
+Required permissions to modify Exchange Online group memberships.
+
+Access to the Maple API.
+
+Access to the external script for logging and email functionality.
+
+
+Example Usage
+
+# Example of running the script manually
+.\Manage-ExchangeGroups.ps1
+
+Logs and Reports
+
+All logs are managed by an external script and stored in both a log file and the PIRUS application.
+
+A daily email report is sent to [Insert Email Addresses] summarizing the changes made.
+
+
+Error Handling
+
+If any errors occur during execution, they are logged via the external script,
+and an error message is included in the daily email report.
+
+
+---
+
+This updated version now accounts for the external script handling the logging and email sending, as well as the use of the Messaging API and Restheart API. You can fill in the specific details as needed.
+
+Conclusion
+
+This PowerShell script provides an automated solution for managing Exchange Online group memberships, ensuring that only the appropriate regulated users are present in each group based on the rules defined in the Maple application. By running daily, the script maintains group accuracy, streamlining user management and compliance. The generated email reports, complete with a detailed CSV file, offer clear visibility into the changes made, enhancing transparency and auditability. This solution minimizes manual intervention, reduces errors, and ensures consistency in managing Exchange Online group memberships.
+
