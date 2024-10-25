@@ -20,6 +20,7 @@ namespace Restaurants.Infrastructure.Authorization.Requirements
             {
                 logger.LogWarning($"User has not at least {requirement.MinimumRestaurantsOwners} restaurants" );
                 context.Fail();
+
                            }
 
             logger.LogInformation("Authorization succeeded");

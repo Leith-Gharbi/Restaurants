@@ -17,7 +17,7 @@ namespace Restaurants.Application.Restaurants.Commands.CreateRestaurant.Tests
             {
                 Name = "Test",
                 Description = "description",
-                Category = "Italien",
+                Category = "Italian",
                 ContactEmail = "Test@test.com",
                 PostalCode = "12-345",
 
@@ -116,7 +116,7 @@ namespace Restaurants.Application.Restaurants.Commands.CreateRestaurant.Tests
 
             //Assert
 
-            result.ShouldNotHaveValidationErrorFor(c => c.PostalCode);
+            result.ShouldHaveValidationErrorFor(c => c.PostalCode);
 
 
         }
