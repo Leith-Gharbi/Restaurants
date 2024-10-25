@@ -34,7 +34,7 @@ namespace Restaurants.API.Controllers
         public async Task<ActionResult<RestaurantDto?>> GetById([FromRoute] int id)  // ActionResult<RestaurantDto?>  will specify the resonse type in swagger doc
         {
 
-            var userId = User.Claims.FirstOrDefault(c => c.Type =="<id claim type>")!.Value;
+            
             var restaurant = await mediator.Send(new GetRestaurantByIdQuery(id));
 
             return Ok(restaurant);
