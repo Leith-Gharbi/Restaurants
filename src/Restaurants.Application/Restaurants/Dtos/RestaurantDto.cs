@@ -18,6 +18,8 @@ namespace Restaurants.Application.Restaurants.Dtos
         public string? Street { get; set; }
         public string? PostalCode { get; set; }
 
+        public string? LogoSasUrl { get; set; }
+
         public List<DishDto> Dishes { get; set; } = [];
 
 
