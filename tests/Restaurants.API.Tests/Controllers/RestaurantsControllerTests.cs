@@ -20,7 +20,7 @@ public class RestaurantsControllerTests : IClassFixture<WebApplicationFactory<Pr
 {
     private readonly WebApplicationFactory<Program> _factory;
     private readonly Mock<IRestaurantsRepository> _restaurantsRepositoryMock = new();
-
+    private readonly Mock<IRestaurantsSeeder> _restaurantsSeederMock = new();
 
     public RestaurantsControllerTests(WebApplicationFactory<Program> factory)
     {
@@ -32,8 +32,11 @@ public class RestaurantsControllerTests : IClassFixture<WebApplicationFactory<Pr
                 services.Replace(ServiceDescriptor.Scoped(typeof(IRestaurantsRepository),
                                             _ => _restaurantsRepositoryMock.Object));
 
+                services.Replace(ServiceDescriptor.Scoped(typeof(IRestaurantsSeeder),
+                                            _ => _restaurantsSeederMock.Object));
 
-             
+
+
             });
         });
     }
